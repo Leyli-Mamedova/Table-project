@@ -3,8 +3,6 @@ import ProductDetails from "./ProductDetails";
 
 const Home = ({isPending, error, search, products, setProducts }) => {
     const [selectedId, setSelectedId] = useState(null);
-
-
     const handleDelete = (id) => {
         setProducts(products.filter((product) => product.id !== id))
     }
@@ -32,7 +30,7 @@ const Home = ({isPending, error, search, products, setProducts }) => {
                                 {filtered.map(product => (
                                     < tr key={product.id} >
                                         <td className="image-div">
-                                            <img src={product.images[0]} onClick={() => setSelectedId(product.id)} className="product-image" alt={`Image of ${product.name}`} />
+                                            <img src={product.images?.[0]} onClick={() => setSelectedId(product.id)} className="product-image" alt={`Image of ${product.name}`} />
                                         </td>
                                         <td className="product-title" onClick={() => setSelectedId(product.id)}>{product.title}</td>
                                         <td>{product.description}</td>

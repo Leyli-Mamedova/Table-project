@@ -17,23 +17,27 @@ const NewProduct = ({ setProducts }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const product = { title, description, price, brand, category, discount, rating, tags };
+        const product = { title, description, price, brand, category, discount, rating, tags, images: [image] };
         setIsPending(true);
 
-        fetch('https://dummyjson.com/products/', {
+        fetch('https://dummyjson.com/products/add', {
             method: 'POST',
             headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(product)
         })
-        .then((res)=>{
-            if(!res.ok){
-                throw Error('cannot fetch the data')
-            }
-            return res.json()
-        })
+            .then((res) => {
+                if (!res.ok) {
+                    throw Error('cannot fetch the data')
+                } else{
+                    console.log(res.ok);
+                    
+                }
+                return res.json()
+            })
             .then((newProduct) => {
+                console.log(newProduct);
                 setIsPending(false);
-                setProducts((prev) => [newProduct, ...prev]);
+                setProducts((prev) => [...prev, newProduct]);
                 navigate("/")
             })
             .catch((err) => {
