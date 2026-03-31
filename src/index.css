@@ -1,0 +1,353 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto Slab", serif;
+}
+
+.App {
+  height: 100vh;
+  overflow: auto;
+  background-image: url("https://marketplace.canva.com/EAGEncMdbEM/1/0/1600w/canva-beige-brown-simple-abstract-desktop-wallpaper-pE_Ruap0PiI.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 80px 30px;
+  position: sticky;
+  top: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  right: 100px;
+}
+
+.navbar input {
+  outline: none;
+  border-radius: 40px;
+  border: 1px solid rgb(154, 115, 95);
+  padding: 10px;
+  width: 30%;
+  margin: auto;
+  font-size: 16px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: brown;
+  font-size: 16px;
+  border: 1px solid brown;
+  border-radius: 40px;
+  padding: 6px 10px;
+  font-weight: 600;
+  background-color: white;
+}
+
+.navbar a:hover {
+  color: white;
+  border: 1px solid brown;
+  background-color: brown;
+}
+
+.table-wrapper {
+  width: 90%;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.table {
+  height: 76vh;
+  overflow: auto;
+}
+
+.table table {
+  border-collapse: collapse;
+}
+
+.table thead {
+  position: sticky;
+  top: 0;
+  background: rgb(255, 243, 237);
+  z-index: 1;
+  box-shadow: 0 2px 0 brown;
+}
+
+.table td {
+  padding: 6px 10px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.table tr {
+  border-bottom: 1px solid rgb(154, 115, 95);
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: white;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: white;
+}
+
+.table th {
+  padding: 22px 12px;
+  text-align: left;
+  color: brown;
+  font-size: 18px;
+}
+
+.product-title {
+  font-weight: 600;
+}
+
+.table i {
+  color: brown;
+}
+
+.delete-btn {
+  padding-left: 18px;
+}
+
+.image-div {
+  width: 9%;
+}
+
+.image-div img {
+  cursor: pointer;
+}
+
+.product-image {
+  width: 100%;
+}
+
+.loading {
+  color: white;
+  font-size: 22px;
+}
+
+.not-found {
+  padding-top: 40px;
+  font-size: 24px;
+}
+
+/* ProductDetails */
+
+.details {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.transparent {
+  display: block;
+  width: 84%;
+  margin: auto;
+  background-color: rgb(238, 209, 194);
+  border-radius: 20px;
+  border: 1px solid bisque;
+  padding: 28px 80px;
+  position: relative;
+}
+
+.details .image {
+  width: 24%;
+  height: 100%;
+  border-radius: 20px;
+  margin: auto;
+}
+
+.details .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tags p {
+  color: rgb(185, 143, 14);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.details .text h2 {
+  font-size: 34px;
+  padding-bottom: 40px;
+  text-align: center;
+  color: black;
+}
+
+.text .desc {
+  text-align: left;
+  padding-bottom: 30px;
+  line-height: 1.6;
+  color: #343434;
+}
+
+.details .price,
+.details .brand {
+  font-size: 20px;
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+.details .price {
+  text-align: right;
+}
+
+.details .category span {
+  color: rgb(185, 143, 14);
+  font-weight: 500;
+}
+
+#exit {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background-color: rgb(238, 209, 194);
+  color: black;
+  border-radius: 50%;
+  padding: 16px;
+  font-size: 24px;
+  cursor: pointer;
+  border: 2px solid #333;
+}
+
+#exit:hover {
+  background-color: #333;
+  color: white;
+  transition-duration: 0.1s;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 14px;
+  padding: 16px 24px;
+  gap: 20px;
+}
+
+.info-left,
+.info-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-left p,
+.info-right p {
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.details .discount {
+  color: #e53935;
+}
+
+.details .rating {
+  color: #555;
+}
+
+.price-brand {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+
+/* Adding new product */
+
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 80%;
+  margin: auto;
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 10px);
+}
+
+.full {
+  width: 100%;
+}
+
+.form label {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form input,
+.form textarea {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: 0.1s;
+}
+
+.form textarea {
+  height: 70px;
+  resize: none;
+}
+
+.form input:focus,
+.form textarea:focus,
+.navbar input:focus {
+  border-color: #896744;
+  box-shadow: 0 0 1px 2px rgba(166, 124, 82, 0.15);
+}
+
+.form button {
+  padding: 12px;
+  background: #4e2920;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 20%;
+  margin: auto;
+  font-size: 16px;
+}
+
+.form button:focus {
+  background: #5c372e;
+
+}
