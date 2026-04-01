@@ -18,10 +18,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 30px 80px 30px;
+  padding: 20px 80px 20px;
   position: sticky;
   top: 0;
+  z-index: 100;
+  background-color: white;
+  margin-bottom: 30px;
 }
+
 
 .nav-links {
   display: flex;
@@ -118,16 +122,10 @@
   padding-left: 18px;
 }
 
-.image-div {
-  width: 9%;
-}
-
-.image-div img {
-  cursor: pointer;
-}
-
 .product-image {
-  width: 100%;
+  max-width: 90px;
+  max-height: 90px;
+  object-fit: contain;
 }
 
 .loading {
@@ -161,14 +159,13 @@
   background-color: rgb(238, 209, 194);
   border-radius: 20px;
   border: 1px solid bisque;
-  padding: 28px 80px;
+  padding: 20px 80px;
   position: relative;
 }
 
 .details .image {
-  width: 24%;
+  width: 22%;
   height: 100%;
-  border-radius: 20px;
   margin: auto;
 }
 
@@ -216,7 +213,7 @@
   text-align: right;
 }
 
-.details .category span {
+.details span {
   color: rgb(185, 143, 14);
   font-weight: 500;
 }
@@ -251,22 +248,24 @@
   margin-top: 10px;
   background: rgba(255, 255, 255, 0.4);
   border-radius: 14px;
-  padding: 16px 24px;
+  padding: 12px 24px;
   gap: 20px;
 }
 
 .info-left,
-.info-right {
+.info-right,
+.info-end {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
 .info-left p,
-.info-right p {
+.info-right p,
+.info-end p {
   font-size: 15px;
   background: rgba(255, 255, 255, 0.6);
-  padding: 6px 14px;
+  padding: 5px 14px;
   border-radius: 20px;
 }
 
@@ -350,4 +349,12 @@
 .form button:focus {
   background: #5c372e;
 
+}
+
+/* yup  */
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
 }

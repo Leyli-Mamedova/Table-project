@@ -28,12 +28,20 @@ const ProductDetails = ({ id, onClose }) => {
                             <div className="info-left">
                                 <p className="category"><span>Category: </span>{product.category}</p>
                                 <p className="discount">Discount: {product.discountPercentage}%</p>
+                                <p className="weight">Weight: {product.weight}%</p>
                             </div>
                             <div className="info-right">
                                 <p className="rating">Rating: {product.rating}⭐</p>
                                 <div className="tags">{product.tags.map((tag, index) => (
                                     <p key={index}>#{tag}</p>
                                 ))}</div>
+                                <p className="minimumOrderQuantity">Minimum order quantity: {product.minimumOrderQuantity}</p>
+                            </div>
+
+                            <div className="info-end">
+                                <p className="warrantyInformation">Warranty: <span>{product.warrantyInformation}</span></p>
+                                <p className="shippingInformation">Shipping: {product.shippingInformation}</p>
+                                <p className="availabilityStatus">Availability status: {product.availabilityStatus}</p>
                             </div>
                         </div>
                     </div>

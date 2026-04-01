@@ -1,5 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
+
+const schema = yup.object({
+    image:       yup.string().url("Enter a valid URL").required("Required field"),
+    title:       yup.string().required("Required field"),
+    description: yup.string().required("Required field"),
+    price:       yup.number().typeError("Enter a number").positive("Price must be positive").required("Required field"),
+    category:    yup.string().required("Required field"),
+});
 
 const NewProduct = ({ setProducts }) => {
     const [image, setImage] = useState("")
@@ -12,11 +21,24 @@ const NewProduct = ({ setProducts }) => {
     const [rating, setRating] = useState("")
     const [tags, setTags] = useState("")
     const [isPending, setIsPending] = useState(false);
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
+        try {
+            await schema.validate({ image, title, description, price, category }, { abortEarly: false });
+        } catch (validationError) {
+            const errs = {};
+            validationError.inner.forEach(err => {
+                errs[err.path] = err.message;
+            });
+            setErrors(errs);
+            return;
+        }
+
+        setErrors({});
         const product = { title, description, price, brand, category, discount, rating, tags, images: [image] };
         setIsPending(true);
 
@@ -28,9 +50,6 @@ const NewProduct = ({ setProducts }) => {
             .then((res) => {
                 if (!res.ok) {
                     throw Error('cannot fetch the data')
-                } else{
-                    console.log(res.ok);
-                    
                 }
                 return res.json()
             })
@@ -50,35 +69,29 @@ const NewProduct = ({ setProducts }) => {
         <div className="new">
             <form className="form" onSubmit={handleSubmit}>
                 <h2 className="full">Add New Product</h2>
+
                 <div className="field">
                     <label>Image URL</label>
-                    <input
-                        required
-                        value={image}
-                        onChange={(e) => setImage(e.target.value.trim())} />
+                    <input value={image} onChange={(e) => setImage(e.target.value.trim())} />
+                    {errors.image && <p className="error">{errors.image}</p>}
                 </div>
+
                 <div className="field">
                     <label>Title</label>
-                    <input
-                        required
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value.trim())} />
+                    <input value={title} onChange={(e) => setTitle(e.target.value.trim())} />
+                    {errors.title && <p className="error">{errors.title}</p>}
                 </div>
 
                 <div className="field full">
                     <label>Description</label>
-                    <textarea
-                        required
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value.trim())} />
+                    <textarea value={description} onChange={(e) => setDescription(e.target.value.trim())} />
+                    {errors.description && <p className="error">{errors.description}</p>}
                 </div>
 
                 <div className="field">
                     <label>Price</label>
-                    <input type="number"
-                        required
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)} />
+                    <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+                    {errors.price && <p className="error">{errors.price}</p>}
                 </div>
 
                 <div className="field">
@@ -88,10 +101,8 @@ const NewProduct = ({ setProducts }) => {
 
                 <div className="field">
                     <label>Category</label>
-                    <input
-                        required
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)} />
+                    <input value={category} onChange={(e) => setCategory(e.target.value)} />
+                    {errors.category && <p className="error">{errors.category}</p>}
                 </div>
 
                 <div className="field">
