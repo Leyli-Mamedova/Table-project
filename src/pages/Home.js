@@ -9,24 +9,25 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ProductDetails from "./ProductDetails";
+import ProductDetails from "../components/ProductDetails";
+import { useSelector, useDispatch } from "react-redux";
+import { removeProduct } from "../features/productsSlice";
 
 const columns = [
-    { id: "image",       label: "Product",     width: "10%" },
-    { id: "title",       label: "Title",        width: "20%" },
-    { id: "description", label: "Description",  width: "50%" },
-    { id: "price",       label: "Price",        width: "10%", align: "right" },
-    { id: "delete",      label: "",             width: "10%", align: "center" },
+    { id: "image", label: "Product", width: "10%" },
+    { id: "title", label: "Title", width: "20%" },
+    { id: "description", label: "Description", width: "50%" },
+    { id: "price", label: "Price", width: "10%", align: "right" },
+    { id: "delete", label: "", width: "10%", align: "center" },
 ];
 
-const Home = ({ isPending, error, search, products, setProducts }) => {
+const Home = () => {
+    const { isPending, error, search, products } = useSelector(state => state.products)
     const [selectedId, setSelectedId] = useState(null);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
-    const handleDelete = (id) => {
-        setProducts(products.filter((product) => product.id !== id));
-    };
+    const dispatch = useDispatch()
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -39,8 +40,8 @@ const Home = ({ isPending, error, search, products, setProducts }) => {
 
     const filtered = products.filter(
         (prod) =>
-            prod.category?.toLowerCase().trim().includes(search.toLowerCase().trim()) ||
-            prod.title?.toLowerCase().trim().includes(search.toLowerCase().trim())
+            prod.category?.toLowerCase().trim().includes(search?.toLowerCase().trim()) ||
+            prod.title?.toLowerCase().trim().includes(search?.toLowerCase().trim())
     );
 
     return (
@@ -72,13 +73,13 @@ const Home = ({ isPending, error, search, products, setProducts }) => {
                                     .map((product) => (
                                         <TableRow hover tabIndex={-1} key={product.id}>
                                             <TableCell>
-                                                    <img
-                                                        src={product.images?.[0]}
-                                                        alt={`Image of ${product.title}`}
-                                                        className="product-image"
-                                                        onClick={() => setSelectedId(product.id)}
-                                                        style={{ cursor: "pointer" }}
-                                                    />
+                                                <img
+                                                    src={product.images?.[0]}
+                                                    alt={`Image of ${product.title}`}
+                                                    className="product-image"
+                                                    onClick={() => setSelectedId(product.id)}
+                                                    style={{ cursor: "pointer" }}
+                                                />
                                             </TableCell>
 
                                             <TableCell
@@ -95,7 +96,7 @@ const Home = ({ isPending, error, search, products, setProducts }) => {
 
                                             <TableCell align="center">
                                                 <IconButton
-                                                    onClick={() => handleDelete(product.id)}
+                                                    onClick={() => dispatch(removeProduct(product.id))}
                                                     size="small"
                                                     aria-label="delete-button">
                                                     <DeleteIcon fontSize="small" />

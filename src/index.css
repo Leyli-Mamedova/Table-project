@@ -358,3 +358,26 @@
   font-size: 12px;
   margin-top: 4px;
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0px;
+    margin-bottom: 30px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 10px;
+    right: 0px;
+  }
+
+  .navbar input {
+    width: 30%;
+    margin: right;
+    font-size: 16px;
+    left: 0px;
+  }
+}

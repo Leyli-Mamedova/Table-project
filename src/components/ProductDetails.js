@@ -1,4 +1,4 @@
-import useFetch from "./useFetch";
+import useFetch from "../useFetch";
 
 const ProductDetails = ({ id, onClose }) => {
     const { data: product, error, isPending } = useFetch('https://dummyjson.com/products/' + id);

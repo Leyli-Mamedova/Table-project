@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { addProduct } from "../features/productsSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const schema = yup.object({
     image:       yup.string().url("Enter a valid URL").required("Required field"),
@@ -10,7 +12,9 @@ const schema = yup.object({
     category:    yup.string().required("Required field"),
 });
 
-const NewProduct = ({ setProducts }) => {
+const NewProduct = () => {
+    const dispatch = useDispatch()
+
     const [image, setImage] = useState("")
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
@@ -56,7 +60,7 @@ const NewProduct = ({ setProducts }) => {
             .then((newProduct) => {
                 console.log(newProduct);
                 setIsPending(false);
-                setProducts((prev) => [...prev, newProduct]);
+                dispatch(addProduct(newProduct));
                 navigate("/")
             })
             .catch((err) => {

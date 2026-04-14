@@ -1,32 +1,28 @@
 import './App.css';
-import NavBar from './NavBar';
+import NavBar from './components/NavBar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import NotFound from './NotFound';
-import { useState } from 'react';
-import NewProduct from './NewProduct';
-import useFetch from "./useFetch";
+import Home from './pages/Home';
+import NotFound from './components/NotFound';
+import NewProduct from './pages/NewProduct';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchProducts } from './features/productsSlice';
 
 function App() {
-  const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState('')
-  const { data, isPending, error } = useFetch('https://dummyjson.com/products');
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if (data) {
-      setProducts(data.products)
-    }
-  }, [data])
+    dispatch(fetchProducts())
+  }, [dispatch])
 
   return (
     <BrowserRouter>
       <div className="App">
-        <NavBar search={search} setSearch={setSearch} />
+        <NavBar />
         <div className="content">
           <Routes>
-            <Route path="/" element={<Home isPending={isPending} error={error} products={products} setProducts={setProducts} search={search} />} />
-            <Route path="/create" element={<NewProduct setProducts={setProducts} />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/create" element={<NewProduct />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
