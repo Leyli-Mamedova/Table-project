@@ -1,0 +1,48 @@
+{
+    "table": {
+        "product": "Product",
+        "title": "Title",
+        "description": "Description",
+        "price": "Price",
+        "noProducts": "No products found",
+        "loading": "Loading...",
+        "rows": "Rows per page:",
+        "of": "of"
+    },
+    "newProduct": {
+        "name": "Add New Product",
+        "image": "Image URL",
+        "title": "Title",
+        "description": "Description",
+        "price": "Price",
+        "brand": "Brand",
+        "category": "Category",
+        "discount": "Discount",
+        "rating": "Rating",
+        "tags": "Tags",
+        "create": "Create Product",
+        "loading": "Loading..."
+    },
+    "validation": {
+        "url": "Enter a valid URL",
+        "required": "Required field",
+        "number": "Enter a number",
+        "positive": "Price must be positive"
+    },
+    "productDetails": {
+        "price": "Price:",
+        "brand": "Brand:",
+        "category": "Category:",
+        "discount": "Discount:",
+        "rating": "Rating:",
+        "warranty": "warranty:",
+        "weight": "Weight:",
+        "quantity": "Minimum order quantity: ",
+        "status": "Availability status:",
+        "shipping": "Availability status:"
+    },
+    
+    "search": "Search...",
+    "home": "Home",
+    "not_found": "No products found"
+}

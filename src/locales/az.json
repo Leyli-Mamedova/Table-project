@@ -1,0 +1,47 @@
+{
+    "table": {
+        "product": "Məhsul",
+        "title": "Ad",
+        "description": "Təsvir",
+        "price": "Qiymət",
+        "noProducts": "Məhsul tapılmadı",
+        "loading": "Yüklənir...",
+        "rows": "Səhifədə sətir sayı:",
+        "of": " / "
+    },
+    "newProduct": {
+        "name": "Yeni məhsul əlavə et",
+        "image": "Şəkil URL-i",
+        "title": "Ad",
+        "description": "Təsvir",
+        "price": "Qiymət",
+        "brand": "Brend",
+        "category": "Kateqoriya",
+        "discount": "Endirim",
+        "rating": "Reytinq",
+        "tags": "Teqlər",
+        "create": "Məhsul yarat",
+        "loading": "Yüklənir..."
+    },
+    "validation": {
+        "url": "Düzgün URL daxil edin",
+        "required": "Bu sahə mütləqdir",
+        "number": "Rəqəm daxil edin",
+        "positive": "Qiymət müsbət olmalıdır"
+    },
+    "productDetails": {
+        "price": "Qiymət:",
+        "brand": "Brend:",
+        "category": "Kateqoriya:",
+        "discount": "Endirim:",
+        "rating": "Reytinq:",
+        "warranty": "Zəmanət:",
+        "weight": "Çəki:",
+        "quantity": "Minimum sifariş miqdarı:",
+        "status": "Mövcudluq statusu:",
+        "shipping": "Çatdırılma statusu:"
+    },
+    "search": "Axtarış...",
+    "home": "Ev",
+    "not_found": "Məhsul tapılmadı"
+}

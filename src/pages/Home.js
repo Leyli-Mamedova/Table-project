@@ -11,21 +11,22 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ProductDetails from "../components/ProductDetails";
 import { useSelector, useDispatch } from "react-redux";
-import { removeProduct } from "../features/productsSlice";
-
-const columns = [
-    { id: "image", label: "Product", width: "10%" },
-    { id: "title", label: "Title", width: "20%" },
-    { id: "description", label: "Description", width: "50%" },
-    { id: "price", label: "Price", width: "10%", align: "right" },
-    { id: "delete", label: "", width: "10%", align: "center" },
-];
+import { deleteProduct } from "../features/productApi";
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
     const { isPending, error, search, products } = useSelector(state => state.products)
     const [selectedId, setSelectedId] = useState(null);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const { t } = useTranslation()
+    const columns = [
+        { id: "image", label: (t('table.product')), width: "10%" },
+        { id: "title", label: (t('table.title')), width: "20%" },
+        { id: "description", label: (t('table.description')), width: "50%" },
+        { id: "price", label: (t('table.price')), width: "10%", align: "right" },
+        { id: "delete", label: "", width: "10%", align: "center" },
+    ];
 
     const dispatch = useDispatch()
 
@@ -38,16 +39,12 @@ const Home = () => {
         setPage(0);
     };
 
-    const filtered = products.filter(
-        (prod) =>
-            prod.category?.toLowerCase().trim().includes(search?.toLowerCase().trim()) ||
-            prod.title?.toLowerCase().trim().includes(search?.toLowerCase().trim())
-    );
+    const filtered = products
 
     return (
         <div>
             {error && <div>{error}</div>}
-            {isPending && <div className="loading">Loading...</div>}
+            {isPending && <div className="loading">{t('table.loading')}</div>}
 
             {filtered.length > 0 && (
                 <Paper sx={{ width: "100%" }}>
@@ -96,7 +93,7 @@ const Home = () => {
 
                                             <TableCell align="center">
                                                 <IconButton
-                                                    onClick={() => dispatch(removeProduct(product.id))}
+                                                    onClick={() => dispatch(deleteProduct(product.id))}
                                                     size="small"
                                                     aria-label="delete-button">
                                                     <DeleteIcon fontSize="small" />

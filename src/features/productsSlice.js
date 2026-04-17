@@ -1,13 +1,10 @@
-import { createSlice, createAsyncThunk, isPending } from "@reduxjs/toolkit";
-
-export const fetchProducts = createAsyncThunk(
-    'products/fetchProducts',
-    async () => {
-        const res = await fetch('https://dummyjson.com/products')
-        const data = await res.json()
-        return data.products
-    }
-)
+import { createSlice } from "@reduxjs/toolkit";
+import {
+    fetchProducts,
+    searchProducts,
+    createProduct,
+    deleteProduct
+} from "./productApi"
 
 const productsSlice = createSlice({
     name: 'products',
@@ -20,18 +17,13 @@ const productsSlice = createSlice({
     reducers: {
         setSearch: (state, action) => {
             state.search = action.payload;
-        },
-        addProduct: (state, action) => {
-            state.products.push(action.payload)
-        },
-        removeProduct: (state, action) => {
-           state.products = state.products.filter((product) => product.id !== action.payload)
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(fetchProducts.pending, (state) => {
                 state.isPending = true
+                state.error = null
             })
             .addCase(fetchProducts.fulfilled, (state, action) => {
                 state.isPending = false
@@ -41,8 +33,47 @@ const productsSlice = createSlice({
                 state.isPending = false
                 state.error = action.error.message
             })
+            .addCase(searchProducts.pending, (state) => {
+                state.isPending = true
+                state.error = null
+            })
+            .addCase(searchProducts.fulfilled, (state, action) => {
+                state.isPending = false
+                state.products = action.payload
+            })
+            .addCase(searchProducts.rejected, (state, action) => {
+                state.isPending = false
+                state.error = action.error.message
+            })
+            .addCase(createProduct.pending, (state) => {
+                state.isPending = true
+                state.error = null
+            })
+            .addCase(createProduct.fulfilled, (state, action) => {
+                state.isPending = false
+                state.products.push(action.payload)
+            })
+            .addCase(createProduct.rejected, (state, action) => {
+                state.isPending = false
+                state.error = action.error.message
+            })
+            .addCase(deleteProduct.pending, (state) => {
+                state.isPending = true
+                state.error = null
+            })
+            .addCase(deleteProduct.fulfilled, (state, action) => {
+                state.isPending = false
+                state.products = state.products.filter(
+                    (p)=> p.id !== action.payload
+                )
+            })
+            .addCase(deleteProduct.rejected, (state, action) => {
+                state.isPending = false
+                state.error = action.error.message
+            })
+
     }
 })
 
-export const { setSearch, addProduct, removeProduct } = productsSlice.actions
+export const { setSearch } = productsSlice.actions
 export default productsSlice.reducer

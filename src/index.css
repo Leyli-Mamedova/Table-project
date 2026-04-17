@@ -304,6 +304,10 @@
   width: calc(50% - 10px);
 }
 
+.field .required{
+  color: red;
+}
+
 .full {
   width: 100%;
 }
@@ -348,7 +352,10 @@
 
 .form button:focus {
   background: #5c372e;
+}
 
+.form button:hover {
+  background: #5c372e;
 }
 
 /* yup  */
@@ -358,6 +365,7 @@
   font-size: 12px;
   margin-top: 4px;
 }
+
 
 @media (max-width: 768px) {
   .navbar {
