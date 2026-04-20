@@ -38,10 +38,15 @@
   outline: none;
   border-radius: 40px;
   border: 1px solid rgb(154, 115, 95);
-  padding: 10px;
+  padding: 6px 10px;
   width: 30%;
-  margin: auto;
   font-size: 16px;
+  margin: auto;
+}
+
+.search-btn {
+  position: absolute;
+  right: 30%;
 }
 
 .navbar a {
@@ -304,7 +309,7 @@
   width: calc(50% - 10px);
 }
 
-.field .required{
+.field .required {
   color: red;
 }
 

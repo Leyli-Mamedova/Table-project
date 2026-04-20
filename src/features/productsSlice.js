@@ -12,7 +12,7 @@ const productsSlice = createSlice({
         products: [],
         search: '',
         isPending: false,
-        error: null
+        error: null,
     },
     reducers: {
         setSearch: (state, action) => {
@@ -40,6 +40,7 @@ const productsSlice = createSlice({
             .addCase(searchProducts.fulfilled, (state, action) => {
                 state.isPending = false
                 state.products = action.payload
+                state.page = 0 
             })
             .addCase(searchProducts.rejected, (state, action) => {
                 state.isPending = false
@@ -64,13 +65,14 @@ const productsSlice = createSlice({
             .addCase(deleteProduct.fulfilled, (state, action) => {
                 state.isPending = false
                 state.products = state.products.filter(
-                    (p)=> p.id !== action.payload
+                    (p) => p.id !== action.payload
                 )
             })
             .addCase(deleteProduct.rejected, (state, action) => {
                 state.isPending = false
                 state.error = action.error.message
             })
+
 
     }
 })

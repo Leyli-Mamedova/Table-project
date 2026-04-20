@@ -3,6 +3,7 @@
         "product": "Məhsul",
         "title": "Ad",
         "description": "Təsvir",
+        "category" : "Kateqoriya",
         "price": "Qiymət",
         "noProducts": "Məhsul tapılmadı",
         "loading": "Yüklənir...",
@@ -42,6 +43,7 @@
         "shipping": "Çatdırılma statusu:"
     },
     "search": "Axtarış...",
+    "search-btn": "Axtarış",
     "home": "Ev",
     "not_found": "Məhsul tapılmadı"
 }

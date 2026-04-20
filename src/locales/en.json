@@ -3,6 +3,7 @@
         "product": "Product",
         "title": "Title",
         "description": "Description",
+        "category" : "Category",
         "price": "Price",
         "noProducts": "No products found",
         "loading": "Loading...",
@@ -43,6 +44,7 @@
     },
     
     "search": "Search...",
+    "search-btn": "Search",
     "home": "Home",
     "not_found": "No products found"
 }

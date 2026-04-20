@@ -18,12 +18,13 @@ export const fetchProducts = createAsyncThunk(
 
 export const searchProducts = createAsyncThunk(
     "products/searchProducts",
-    async (query, { rejectWithValue }) => {
+    async (category, { rejectWithValue }) => {
         try {
-            const res = await fetch(`${API_URL}/products/search?q=${query}`);
-            if (!res.ok) throw new Error("Search failed");
+            const res = await fetch(`${API_URL}/products/category/${category}`);
+            if (!res.ok) throw new Error("Category fetch failed");
+
             const data = await res.json();
-            return data.products;
+            return data.products; // всегда массив
         } catch (err) {
             return rejectWithValue(err.message);
         }

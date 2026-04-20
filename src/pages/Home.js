@@ -13,6 +13,7 @@ import ProductDetails from "../components/ProductDetails";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteProduct } from "../features/productApi";
 import { useTranslation } from 'react-i18next';
+import { useEffect } from "react";
 
 const Home = () => {
     const { isPending, error, search, products } = useSelector(state => state.products)
@@ -24,6 +25,7 @@ const Home = () => {
         { id: "image", label: (t('table.product')), width: "10%" },
         { id: "title", label: (t('table.title')), width: "20%" },
         { id: "description", label: (t('table.description')), width: "50%" },
+        { id: "category", label: (t('table.category')), width: "10%" },
         { id: "price", label: (t('table.price')), width: "10%", align: "right" },
         { id: "delete", label: "", width: "10%", align: "center" },
     ];
@@ -39,8 +41,11 @@ const Home = () => {
         setPage(0);
     };
 
-    const filtered = products
+    const filtered = products || []
 
+    useEffect(() => {
+        setPage(0);
+    }, [products]);
     return (
         <div>
             {error && <div>{error}</div>}
@@ -88,6 +93,7 @@ const Home = () => {
                                             </TableCell>
 
                                             <TableCell>{product.description}</TableCell>
+                                            <TableCell>{product.category}</TableCell>
 
                                             <TableCell align="right">${product.price}</TableCell>
 
